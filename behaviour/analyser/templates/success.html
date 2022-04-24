@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>overview</title>
+</head>
+<body>
+
+	<!-- upload data --> 
+	<div>
+    		<form action="/" method="POST" enctype="multipart/form-data">
+        	{% csrf_token %}
+        	{% for entry in form %}
+           	<div>
+	                {{ entry.label_tag }}
+	           </div>
+	           <div>
+	               {{entry}}
+	           </div>
+	        {% endfor %}
+	        <button>
+	            Save!
+	        </button>
+	    </form>
+	</div>
+	
+	<!-- show general information -->
+	<h3>First 5 lines of uploaded data: </h3>
+	{{ preview|safe }}
+	<h3>Data columns: </h3>
+	{{ column_headers }}
+	<h3>Subject IDs: </h3>
+	{{ fish_ids }}
+	<h3>Behaviors: </h3>
+	{{ behaviors }}
+	<h3>Behavioral categories: </h3>
+	{{ behavioral_categories }}
+
+	<h3>Data plot: </h3>
+	<div>
+		<img src="{{ data_plot }}" >
+	</div>
+
+	<h3>Interactions: </h3>
+	<div>
+		<img src="{{ interactions }}" >
+	</div>
+
+	<h3>Transitions: </h3>
+	<div>
+		<img src="{{ transitions }}" >
+	</div>
+
+</body>
+</html>
+
